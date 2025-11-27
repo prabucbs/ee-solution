@@ -2,24 +2,28 @@ name : ci and cd pipeline
 
 on:
     push:
-        branch: main
-    pull request:
-        branch: main
+        branches: 
+          - main
+    pull_request:
+        branches: 
+          - main
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
     
-    build:
-        runs on: ubuntu-latest
-        jobs:
-            - name: checkout code
-              uses: actions/checkout@v6
+    steps:  
+      
+      - name: checkout code
+        uses: actions/checkout@v6
 
-            - name: Build and push
-              uses: docker/build-push-action@v6
-                    run dockerbuild -t githubgist .
-            
-            - name: run container
-               docker run githubgist -p 8080:8080            
-                
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        run: dockerbuild -t githubgist .
+      
+      - name: run container
+        run: docker run githubgist -p 8080:8080            
+          
 
 
 
