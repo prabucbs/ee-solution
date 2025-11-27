@@ -19,7 +19,9 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v6
-        run: dockerbuild -t githubgist .
+        with:
+          context: .
+          tags: githubgist:latest
       
       - name: run container
         run: docker run githubgist -p 8080:8080            
