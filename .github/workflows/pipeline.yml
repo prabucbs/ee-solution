@@ -11,16 +11,14 @@ on:
         runs on: ubuntu-latest
         jobs:
             - name: checkout code
-                uses: actions/checkout@v6
+              uses: actions/checkout@v6
 
-            - name: docker build
-                uses: docker/setup-buildx-action@v3
-                run dockerbuild -t githubgist .
+            - name: Build and push
+              uses: docker/build-push-action@v6
+                    run dockerbuild -t githubgist .
             
             - name: run container
-               docker run githubgist -p 8080:8080
-               
-            - name: install python
+               docker run githubgist -p 8080:8080            
                 
 
 
