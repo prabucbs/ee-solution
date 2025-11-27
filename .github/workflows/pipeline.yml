@@ -24,7 +24,7 @@ jobs:
           tags: githubgist:latest
       
       - name: run container
-        run: docker run githubgist -p 8080:8080            
+        run: docker run -p 8080:8080 githubgist            
           
 
 
